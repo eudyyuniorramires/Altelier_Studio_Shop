@@ -1,0 +1,180 @@
+/* ==========================================================================
+   Layout CSS - Grid, Flexbox y Contenedores Principales
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--spacing-8);
+    padding-right: var(--spacing-8);
+  }
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.7)),
+              url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+  color: var(--color-text-inverse);
+  padding: var(--spacing-16) var(--spacing-4);
+  text-align: center;
+  margin-bottom: var(--spacing-10);
+  border-radius: var(--radius-lg);
+}
+
+.hero__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-3);
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .hero__title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+.hero__subtitle {
+  font-size: var(--font-size-lg);
+  color: #e5e7eb;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Sección de Catálogo */
+.catalog-section {
+  padding-bottom: var(--spacing-16);
+  flex: 1;
+}
+
+.catalog-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-8);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .catalog-section__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.catalog-section__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.catalog-section__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+  align-items: center;
+}
+
+.catalog-section__filter-select {
+  padding: var(--spacing-2) var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-main);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.catalog-section__filter-select:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* Grid de Productos */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+}
+
+@media (min-width: 576px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-8);
+  }
+}
+
+@media (min-width: 1200px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Estado Vacío / Loading */
+.products-grid__state-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--spacing-16) var(--spacing-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
+
+.products-grid__spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(17, 24, 39, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  animation: spin 0.8s linear infinite;
+  margin-bottom: var(--spacing-4);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--spacing-10) 0;
+  margin-top: auto;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.footer__brand {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1em;
+}
+
+.footer__copy {
+  color: var(--color-text-light);
+}

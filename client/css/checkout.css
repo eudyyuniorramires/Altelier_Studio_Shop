@@ -1,0 +1,226 @@
+/* ==========================================================================
+   Checkout CSS - Proceso de Pago y Formulario BEM
+   ========================================================================== */
+
+.checkout-page {
+  padding: var(--spacing-8) 0 var(--spacing-16);
+  flex: 1;
+}
+
+.checkout-page__header {
+  margin-bottom: var(--spacing-8);
+  text-align: center;
+}
+
+.checkout-page__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-2);
+}
+
+.checkout-page__subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+}
+
+@media (min-width: 992px) {
+  .checkout-layout {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: start;
+  }
+}
+
+/* Tarjetas de Sección del Checkout */
+.checkout-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.checkout-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-6);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-3);
+}
+
+.checkout-card__step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-card__title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Formulario */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 576px) {
+  .form-grid--2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-main);
+  font-size: var(--font-size-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1);
+  outline: none;
+}
+
+.form-input--error {
+  border-color: var(--color-error);
+}
+
+.form-error-msg {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin-top: 2px;
+  display: none;
+}
+
+.form-error-msg--visible {
+  display: block;
+}
+
+/* Contenedor de Stripe */
+.stripe-element-container {
+  padding: var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-subtle);
+  min-height: 48px;
+}
+
+.payment-simulation-notice {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background-color: var(--color-warning-bg);
+  border-left: 3px solid var(--color-warning);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-sm);
+  margin-top: var(--spacing-3);
+  line-height: 1.4;
+}
+
+/* Resumen del Pedido */
+.order-summary {
+  position: sticky;
+  top: calc(var(--header-height) + var(--spacing-6));
+}
+
+.order-summary__items-list {
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: var(--spacing-4);
+  padding-right: var(--spacing-2);
+}
+
+.order-summary__totals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-4);
+}
+
+.order-summary__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.order-summary__row--final {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-3);
+  margin-top: var(--spacing-2);
+}
+
+/* Botón Finalizar Pago */
+.btn-submit-payment {
+  width: 100%;
+  padding: var(--spacing-4);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-md);
+  margin-top: var(--spacing-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-submit-payment:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-submit-payment:disabled {
+  background-color: var(--color-text-light);
+  cursor: not-allowed;
+  transform: none;
+}

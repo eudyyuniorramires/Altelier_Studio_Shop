@@ -1,0 +1,14 @@
+{
+  "name": "altelier_studio_shop",
+  "version": "1.0.0",
+  "description": "Plataforma de comercio electrónico de indumentaria de alta calidad desarrollada bajo principios de **Clean Architecture (Onion)**, **SOLID** y patrones de diseño en el backend, junto con un frontend modular y responsivo desarrollado con **HTML5 semántico**, **CSS3 puro con metodología BEM** y **JavaScript nativo (ES6+)**.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4"
+  }
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATELIER | Tienda de Moda & Ropa Exclusiva</title>
+  <meta name="description" content="Colección exclusiva de indumentaria contemporánea, minimalista y de alta calidad.">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__brand">
+        <a href="index.html" class="header__logo" data-testid="brand-logo">
+          ATELIER<span class="header__logo-tag">STUDIO</span>
+        </a>
+      </div>
+
+      <nav class="header__nav" aria-label="Navegación principal">
+        <a href="index.html" class="header__nav-link header__nav-link--active" data-testid="nav-collection">Colección</a>
+        <a href="#catalogo" class="header__nav-link" data-category="Camperas" data-testid="nav-category-abrigos">Abrigos</a>
+        <a href="#catalogo" class="header__nav-link" data-category="Remeras" data-testid="nav-category-remeras">Remeras</a>
+        <a href="#catalogo" class="header__nav-link" data-category="Pantalones" data-testid="nav-category-pantalones">Pantalones</a>
+        <a href="#catalogo" class="header__nav-link" data-category="Vestidos" data-testid="nav-category-vestidos">Vestidos</a>
+      </nav>
+
+      <div class="header__actions">
+        <!-- Contenedor dinámico de autenticación (Login / Registro / Salir) -->
+        <div id="nav-auth-container" class="header__auth" data-testid="nav-auth-container"></div>
+
+        <button class="header__cart-btn" id="open-cart-btn" aria-label="Abrir carrito de compras" data-testid="open-cart-btn">
+          <svg class="header__cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="header__cart-badge" id="cart-counter" data-testid="cart-counter">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="container">
+    
+    <!-- Hero Banner -->
+    <section class="hero">
+      <h1 class="hero__title">Colección Atemporal 2026</h1>
+      <p class="hero__subtitle">Prendas con cortes precisos, textiles nobles y diseño minimalista para el guardarropa contemporáneo.</p>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section class="catalog-section" id="catalogo" data-testid="catalog-section">
+      <div class="catalog-section__header">
+        <h2 class="catalog-section__title" id="catalog-section-title">Prendas Destacadas</h2>
+        
+        <div class="catalog-section__filters">
+          <select class="catalog-section__filter-select" id="filter-category" aria-label="Filtrar por categoría" data-testid="filter-category">
+            <option value="">Todas las categorías</option>
+            <option value="Remeras">Remeras & Tops</option>
+            <option value="Camperas">Camperas & Abrigos</option>
+            <option value="Pantalones">Pantalones</option>
+            <option value="Vestidos">Vestidos</option>
+          </select>
+
+          <select class="catalog-section__filter-select" id="filter-sort" aria-label="Ordenar productos" data-testid="filter-sort">
+            <option value="featured">Destacados</option>
+            <option value="price-asc">Precio: Menor a Mayor</option>
+            <option value="price-desc">Precio: Mayor a Menor</option>
+            <option value="name">Alfabético</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid donde Vanilla JS inyecta las tarjetas de ropa -->
+      <div class="products-grid" id="products-container" aria-live="polite" data-testid="products-grid">
+        <div class="products-grid__state-msg">
+          <div class="products-grid__spinner"></div>
+          <p>Cargando colección exclusiva...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== CART DRAWER (SIDE MODAL) ==================== -->
+  <div class="cart-drawer-overlay" id="cart-overlay" aria-hidden="true"></div>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Carrito de compras" aria-hidden="true" data-testid="cart-drawer">
+    <div class="cart-drawer__header">
+      <div class="cart-drawer__title">
+        <span>Tu Carrito</span>
+        <span class="cart-drawer__count-badge" id="cart-drawer-badge" data-testid="cart-drawer-badge">0 prendas</span>
+      </div>
+      <button class="cart-drawer__close-btn" id="close-cart-btn" aria-label="Cerrar carrito" data-testid="close-cart-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="cart-drawer__body" id="cart-items-container" data-testid="cart-items-container">
+      <!-- Items inyectados dinámicamente por cart.js -->
+    </div>
+
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal" data-testid="cart-subtotal">$0.00</span>
+      </div>
+      <div class="cart-drawer__summary-row">
+        <span>Envío estimado</span>
+        <span id="cart-shipping">Calculado en el checkout</span>
+      </div>
+      <div class="cart-drawer__summary-row cart-drawer__summary-row--total">
+        <span>Total</span>
+        <span id="cart-total" data-testid="cart-total">$0.00</span>
+      </div>
+
+      <a href="checkout.html" class="cart-drawer__checkout-btn" id="cart-checkout-btn" data-testid="cart-checkout-btn">
+        <span>Iniciar Compra</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
+  <div class="toast-container" id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer__content">
+      <div class="footer__brand">ATELIER STUDIO</div>
+      <p class="footer__copy">&copy; 2026 ATELIER STUDIO. Arquitectura de Software E-Commerce. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts modulares Vanilla JS (ES6+) -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

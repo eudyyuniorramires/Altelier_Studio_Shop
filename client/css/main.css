@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Main CSS - Archivo de Entrada Global (Clean Architecture en CSS / BEM)
+   ========================================================================== */
+
+@import url('./variables.css');
+@import url('./base.css');
+@import url('./layout.css');
+@import url('./header.css');
+@import url('./product-card.css');
+@import url('./cart-drawer.css');
+@import url('./checkout.css');
+@import url('./toast.css');
+@import url('./auth.css');

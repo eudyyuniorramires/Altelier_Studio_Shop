@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Header CSS - Navegación y Barra Superior BEM
+   ========================================================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Marca / Logo */
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.header__logo {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.header__logo-tag {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.15em;
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-semibold);
+  margin-left: var(--spacing-1);
+}
+
+/* Enlaces de Navegación */
+.header__nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-6);
+  }
+}
+
+.header__nav-link {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  padding: var(--spacing-2) 0;
+}
+
+.header__nav-link:hover,
+.header__nav-link--active {
+  color: var(--color-primary);
+}
+
+.header__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width var(--transition-normal);
+}
+
+.header__nav-link:hover::after,
+.header__nav-link--active::after {
+  width: 100%;
+}
+
+/* Botones de Acción */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.header__cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-primary);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.header__cart-btn:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.header__cart-icon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.header__cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: var(--color-secondary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  min-width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-fast);
+}
+
+.header__cart-badge--bump {
+  animation: badge-bump 300ms ease-out;
+}
+
+@keyframes badge-bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+/* ==================== ESTADO DE AUTENTICACIÓN EN HEADER ==================== */
+.header__auth {
+  display: flex;
+  align-items: center;
+}
+
+.header__auth-guest {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.header__auth-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.header__auth-btn--login {
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  background-color: transparent;
+}
+
+.header__auth-btn--login:hover {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-primary);
+}
+
+.header__auth-btn--register {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border: 1px solid var(--color-primary);
+}
+
+.header__auth-btn--register:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.header__auth-user {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+}
+
+.header__auth-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.header__auth-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  line-height: 1.2;
+}
+
+.header__auth-welcome {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.header__auth-name {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header__auth-badge {
+  background-color: var(--color-secondary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  margin-left: 4px;
+}
+
+.header__auth-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  margin-left: var(--spacing-1);
+}
+
+.header__auth-logout:hover {
+  color: var(--color-error);
+  background-color: rgba(220, 38, 38, 0.08);
+}
+
+@media (max-width: 640px) {
+  .header__auth-welcome {
+    display: none;
+  }
+  .header__auth-name {
+    max-width: 80px;
+  }
+  .header__auth-btn--register {
+    display: none;
+  }
+}

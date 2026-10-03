@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Prenda | ATELIER STUDIO</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__brand">
+        <a href="index.html" class="header__logo">
+          ATELIER<span class="header__logo-tag">STUDIO</span>
+        </a>
+      </div>
+
+      <nav class="header__nav">
+        <a href="index.html" class="header__nav-link">Volver al Catálogo</a>
+      </nav>
+
+      <div class="header__actions">
+        <div id="nav-auth-container" class="header__auth" data-testid="nav-auth-container"></div>
+        <button class="header__cart-btn" id="open-cart-btn" aria-label="Abrir carrito">
+          <svg class="header__cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="header__cart-badge" id="cart-counter">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO DETALLE -->
+  <main class="container" style="padding: var(--spacing-10) var(--spacing-4);">
+    <div id="product-detail-container" style="display: grid; grid-template-columns: 1fr; gap: var(--spacing-8); max-width: 960px; margin: 0 auto;">
+      <!-- Detalle inyectado o mensaje de redirección -->
+      <div style="text-align: center; padding: 3rem 0;">
+        <p>Cargando detalle de prenda...</p>
+        <a href="index.html" style="color: var(--color-primary); text-decoration: underline; margin-top: 1rem; display: inline-block;">Ver todo el catálogo</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- SIDE DRAWER & TOASTS -->
+  <div class="cart-drawer-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer__header">
+      <div class="cart-drawer__title">
+        <span>Tu Carrito</span>
+        <span class="cart-drawer__count-badge" id="cart-drawer-badge">0 prendas</span>
+      </div>
+      <button class="cart-drawer__close-btn" id="close-cart-btn">&times;</button>
+    </div>
+    <div class="cart-drawer__body" id="cart-items-container"></div>
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__summary-row cart-drawer__summary-row--total">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <a href="checkout.html" class="cart-drawer__checkout-btn" id="product-checkout-btn">Iniciar Compra</a>
+    </div>
+  </aside>
+  <div class="toast-container" id="toast-container"></div>
+
+  <script type="module">
+    import { api } from './js/api.js';
+    import { cart } from './js/cart.js';
+    import { auth } from './js/auth.js';
+    import { renderCartDrawerContent, formatCurrency, showToast } from './js/ui.js';
+
+    auth.initNavAuth('nav-auth-container');
+
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    const container = document.getElementById('product-detail-container');
+    const cartCounter = document.getElementById('cart-counter');
+
+    function syncCart() {
+      cartCounter.textContent = cart.getItemCount();
+      renderCartDrawerContent(cart.getItems(), (id, q) => cart.updateQuantity(id, q), (id) => cart.removeItem(id));
+    }
+    syncCart();
+    window.addEventListener('cart:updated', syncCart);
+
+    document.getElementById('open-cart-btn').addEventListener('click', () => {
+      document.getElementById('cart-drawer').classList.add('cart-drawer--open');
+      document.getElementById('cart-overlay').classList.add('cart-drawer-overlay--active');
+    });
+    document.getElementById('close-cart-btn').addEventListener('click', () => {
+      document.getElementById('cart-drawer').classList.remove('cart-drawer--open');
+      document.getElementById('cart-overlay').classList.remove('cart-drawer-overlay--active');
+    });
+    document.getElementById('cart-overlay').addEventListener('click', () => {
+      document.getElementById('cart-drawer').classList.remove('cart-drawer--open');
+      document.getElementById('cart-overlay').classList.remove('cart-drawer-overlay--active');
+    });
+
+    document.getElementById('product-checkout-btn')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!auth.isAuthenticated()) {
+        showToast('Inicio de Sesión Requerido', 'Inicia sesión para procesar tu compra.', 'info');
+        setTimeout(() => {
+          window.location.href = 'login.html?redirect=checkout.html';
+        }, 350);
+      } else {
+        window.location.href = 'checkout.html';
+      }
+    });
+  </script>
+</body>
+</html>
