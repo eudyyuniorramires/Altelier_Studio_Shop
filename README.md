@@ -112,3 +112,8 @@ dotnet run --project server/src/Api/Ecommerce.Api.csproj
 5. **Pasarela de Pagos:**
    - **Pago Aprobado:** Usa cualquier tarjeta con terminación `4242` (ej. `4242 4242 4242 4242`). La orden pasará a `Paid`, se reduce el stock y verás la pantalla de confirmación.
    - **Tarjeta Declinada:** Usa una tarjeta con terminación `0002` o `0069`. El sistema capturará el rechazo y mostrará una alerta amigable en el DOM indicando que el banco emisor declinó la transacción.
+  
+   - <img width="1918" height="1078" alt="image" src="https://github.com/user-attachments/assets/ed13052e-9ef4-4095-9037-880119fb03eb" />
+
+  
+   - 
