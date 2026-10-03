@@ -28,3 +28,4 @@ C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Application\obj\Debug\net
 C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Application\obj\Debug\net10.0\refint\Ecommerce.Application.dll
 C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Application\obj\Debug\net10.0\Ecommerce.Application.pdb
 C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Application\obj\Debug\net10.0\ref\Ecommerce.Application.dll
+C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Application\obj\Debug\net10.0\Ecommerce.Application.sourcelink.json

@@ -36,3 +36,4 @@ C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Infrastructure\obj\Debug\
 C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Infrastructure\obj\Debug\net10.0\Ecommerce.Infrastructure.pdb
 C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Infrastructure\obj\Debug\net10.0\Ecommerce.Infrastructure.genruntimeconfig.cache
 C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Infrastructure\obj\Debug\net10.0\ref\Ecommerce.Infrastructure.dll
+C:\Users\eudyy\Desktop\Altelier_Studio_Shop\server\src\Infrastructure\obj\Debug\net10.0\Ecommerce.Infrastructure.sourcelink.json
