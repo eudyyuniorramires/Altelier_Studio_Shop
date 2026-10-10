@@ -208,7 +208,6 @@ test.describe('Módulo de Autenticación & Header - ATELIER STUDIO', () => {
     await page.getByTestId('login-email').fill('locked_user@atelier.com');
     await page.getByTestId('login-password').fill('Secret123!');
     await page.getByTestId('login-submit-btn').click();
-
     const alert = page.getByTestId('login-error-alert');
     await expect(alert).toBeVisible();
     await expect(alert).toContainText('bloqueada');

@@ -51,8 +51,23 @@ export const emptyPassword = {
     userName:'N/A',
 }
 
-// export const registeredUser = {
-    
 
-// }
+export const validCard = {
+    cardNumber: '4242 4242 4242 4242',
+    cardDate: '12/28',
+    cardCvc: '123',
+}
+
+export const declineCard = {
+    cardNumber: '4000 0000 0000 0002',
+    cardDate: '12/28',
+    cardCvc: '123',
+}
+
+export const expiredCard = {
+    cardNumber: '4000 0000 0000 0069',
+    cardDate: '12/28',
+    cardCvc: '123',
+}
+
 

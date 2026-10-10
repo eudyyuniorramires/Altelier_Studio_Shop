@@ -11,9 +11,7 @@ test.describe('TC02-Register', () => {
 
     const invalidScenarios = [
 
-        {name:'Lucía Méndez', email:`standard_user@atelier.com`, password:'NuevaPass123!', address:'Av. Santa Fe 2341', city:'CABA', postal:'C1059', expectedMessage:'El correo electrónico ya se encuentra registrado.'},
-        
-
+        {name:'Lucía Méndez', email:`standard_user@atelier.com`, password:'NuevaPass123!', address:'Av. Santa Fe 2341', city:'CABA', postal:'C1059', expectedMessage:'El correo electrónico ya se encuentra registrado.'},    
     ]
 
     const invalidInputScenarios = [
@@ -35,7 +33,7 @@ test.describe('TC02-Register', () => {
             await registerPage.register(name,email,password,address,city,postal);
             await expect( registerPage.errorInputPassword).toContainText(expectedMessage);
         }
-    });
+    });             
 
     test('Register with invalid input credentials', async ({registerPage})=>{
          
