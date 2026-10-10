@@ -1,45 +1,57 @@
-import {test as base, expect} from '@playwright/test';
-import {LoginPage} from '../pages/LoginPage';
-import {RegisterPage} from '../pages/RegisterPage';
-import {CatalogoPage} from '../pages/CatalogPage';
-import {CreditCardPage} from '../pages/CreditCardPage';
+import { test as base, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+import { RegisterPage } from '../pages/RegisterPage';
+import { CatalogPage } from '../pages/CatalogPage';
+import { CheckoutPage } from '../pages/CheckoutPage';
+import { HeaderComponent } from '../components/HeaderComponent';
+import { CartDrawerComponent } from '../components/CartDrawerComponent';
 
-type PageObject = {
- 
-    loginPage:LoginPage;
+type PageObjects = {
+  loginPage: LoginPage;
+  registerPage: RegisterPage;
+  catalogPage: CatalogPage;
+  checkoutPage: CheckoutPage;
+  header: HeaderComponent;
+  cartDrawer: CartDrawerComponent;
 
-    registerPage:RegisterPage;
-
-    catalogoPag:CatalogoPage;
-
-    creditCardPage:CreditCardPage;
-
+  // Backwards compatibility aliases
+  catalogoPag: CatalogPage;
+  creditCardPage: CheckoutPage;
 };
 
+export const test = base.extend<PageObjects>({
+  loginPage: async ({ page }, use) => {
+    await use(new LoginPage(page));
+  },
 
-export const test = base.extend<PageObject>({
- 
-    loginPage: async({page}, use) => {
-        await use(new LoginPage(page));
-    },
+  registerPage: async ({ page }, use) => {
+    await use(new RegisterPage(page));
+  },
 
-    registerPage: async({page}, use) =>{
+  catalogPage: async ({ page }, use) => {
+    await use(new CatalogPage(page));
+  },
 
-        await use (new RegisterPage(page));
-    },
-    catalogoPag: async({page}, use)=>{
-         
-        await use(new CatalogoPage(page));
-    },
-    creditCardPage: async({page}, use) =>{
+  checkoutPage: async ({ page }, use) => {
+    await use(new CheckoutPage(page));
+  },
 
-        await use(new CreditCardPage(page));
-    }
+  header: async ({ page }, use) => {
+    await use(new HeaderComponent(page));
+  },
 
+  cartDrawer: async ({ page }, use) => {
+    await use(new CartDrawerComponent(page));
+  },
 
+  // Aliases for backwards compatibility
+  catalogoPag: async ({ page }, use) => {
+    await use(new CatalogPage(page));
+  },
 
+  creditCardPage: async ({ page }, use) => {
+    await use(new CheckoutPage(page));
+  },
 });
 
-
-export {expect};
-
+export { expect };

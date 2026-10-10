@@ -3,7 +3,14 @@
   "version": "1.0.0",
   "description": "Plataforma de comercio electrónico de indumentaria de alta calidad desarrollada bajo principios de **Clean Architecture (Onion)**, **SOLID** y patrones de diseño en el backend, junto con un frontend modular y responsivo desarrollado con **HTML5 semántico**, **CSS3 puro con metodología BEM** y **JavaScript nativo (ES6+)**.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "dotnet run --project server/src/Api/Ecommerce.Api.csproj",
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
